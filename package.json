@@ -1,0 +1,48 @@
+{
+    "name": "venus-api",
+    "version": "1.0.0",
+    "main": "dist/server.js",
+    "scripts": {
+        "start": "npm run build && node .",
+        "production": "npm run build && export NODE_ENV=production && npm run start",
+        "test": "tsc -p tsconfig.test.json && npm run lint",
+        "lint": "eslint ./src/**/*.ts",
+        "push": "npm run gitAdd && npm run gitCommit && git push",
+        "clean": "rm -rf dist/*",
+        "reinstall": "npm run cleanCache && npm run deleteModules && npm run deleteLock && npm run installModules",
+        "build": "tsc",
+        "cleanCache": "npm cache clean --force",
+        "deleteModules": "rm -rf node_modules/*",
+        "deleteLock": "rm yarn.lock",
+        "installModules": "yarn install",
+        "gitAdd": "git add .",
+        "gitCommit": "git commit -m 'new commit'"
+    },
+    "author": "VenNeptury",
+    "license": "MIT",
+    "husky": {
+        "hooks": {
+            "pre-commit": "precise-commits && npm run lint"
+        }
+    },
+    "eslintIgnore": [
+        "dist",
+        ".vscode"
+    ],
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.6",
+        "@types/node": "^13.13.2",
+        "@typescript-eslint/eslint-plugin": "^2.27.0",
+        "@typescript-eslint/parser": "^2.27.0",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.10.1",
+        "eslint-plugin-prettier": "^3.1.2",
+        "husky": "^4.2.3",
+        "precise-commits": "^1.0.2",
+        "prettier": "^2.0.4",
+        "typescript": "^3.8.3"
+    }
+}
